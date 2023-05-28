@@ -9,12 +9,21 @@ const server = http.createServer((req, res)=> {
     if(req.url == '/jokes' && req.method == 'GET'){
         getAllJokes(req, res);
     }
-    else if(req.url = '/jokes' && req.method == 'POST'){
+    if(req.url = '/jokes' && req.method == 'POST'){
         addJoke(req, res);
+    }
+    if(req.url.startsWith('/like')){
+        like(req, res);
     }
     res.end();
 });
 server.listen(3000);
+
+function like (req, res){
+    const params = url.parse(req.url, true).query;
+    let id = params.id;
+    console.log(params.id);
+}
 
 function addJoke(req, res){
     let data = '';
